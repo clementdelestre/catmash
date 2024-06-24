@@ -13,6 +13,9 @@ RUN npm install
 # Copy all packages
 COPY packages ./packages
 
+# Install dependencies
+RUN npm install
+
 # Build frontend and backend
 RUN npx lerna run build
 
@@ -22,7 +25,7 @@ FROM node:20.14-alpine
 WORKDIR /app
 
 # Copy built frontend and backend from build stage
-COPY --from=build /app/packages/frontend/dist ./frontend
+COPY --from=build /app/packages/frontend/dist ./frontend/dist
 COPY --from=build /app/packages/backend/dist ./backend/dist
 
 # Install production dependencies for backend
