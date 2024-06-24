@@ -7,13 +7,10 @@ WORKDIR /app
 # Copy Lerna and root package files
 COPY lerna.json package.json package-lock.json ./
 
-# Install dependencies for the entire monorepo
-RUN npm install
-
 # Copy all packages
 COPY packages ./packages
 
-# Install dependencies
+# Install dependencies for the entire monorepo
 RUN npm install
 
 # Build frontend and backend
