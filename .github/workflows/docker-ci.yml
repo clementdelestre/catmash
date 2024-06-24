@@ -1,0 +1,59 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build frontend
+      run: |
+        cd packages/frontend
+        npm install
+        npm run build --prod
+
+    - name: Build backend
+      run: |
+        cd packages/backend
+        npm install
+        npm run build
+
+    - name: Build and push Docker images to GHCR
+      env:
+        GITHUB_TOKEN: ${{ secrets.CR_PAT }}
+        IMAGE_NAME_FRONTEND: ghcr.io/${{ github.repository_owner }}/catmash-frontend:latest
+        IMAGE_NAME_BACKEND: ghcr.io/${{ github.repository_owner }}/catmash-backend:latest
+      run: |
+        echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+        docker build -t $IMAGE_NAME_FRONTEND -f docker/Dockerfile.frontend .
+        docker build -t $IMAGE_NAME_BACKEND -f docker/Dockerfile.backend .
+        docker push $IMAGE_NAME_FRONTEND
+        docker push $IMAGE_NAME_BACKEND
+
+    - name: Deploy notification
+      env:
+        DEPLOY_WEBHOOK_URL_FRONTEND: ${{ secrets.DEPLOY_WEBHOOK_URL_FRONTEND }}
+        DEPLOY_WEBHOOK_URL_BACKEND: ${{ secrets.DEPLOY_WEBHOOK_URL_BACKEND }}
+      run: |
+        curl -X POST $DEPLOY_WEBHOOK_URL_FRONTEND -H 'Content-type: application/json' --data '{"text":"Frontend deployment completed successfully."}'
+        curl -X POST $DEPLOY_WEBHOOK_URL_BACKEND -H 'Content-type: application/json' --data '{"text":"Backend deployment completed successfully."}'
