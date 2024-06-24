@@ -28,7 +28,6 @@ jobs:
       
     - name: Build with Lerna
       run: |
-        npx lerna bootstrap
         npx lerna run build
 
     - name: Build and push Docker image to GHCR
