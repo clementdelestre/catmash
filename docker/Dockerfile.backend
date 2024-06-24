@@ -11,8 +11,6 @@ FROM node:20.14-bullseye
 
 WORKDIR /app
 
-RUN apk update
-
 COPY package.json .
 
 RUN npm install --only=prod
