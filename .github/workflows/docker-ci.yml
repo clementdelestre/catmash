@@ -39,6 +39,10 @@ jobs:
         docker build -t $IMAGE_NAME -f docker/Dockerfile .
         docker push $IMAGE_NAME
 
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Deploy notification
       env:
         DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
