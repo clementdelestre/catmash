@@ -16,7 +16,7 @@ RUN npm install
 # Build frontend and backend
 RUN npx lerna run build
 
-# Stage 2: Final stage
+# Stage 2: Serve frontend with Nginx and run backend with Node
 FROM node:20.14-alpine
 
 WORKDIR /app
@@ -25,10 +25,12 @@ WORKDIR /app
 COPY --from=build /app/packages/frontend/dist ./frontend/dist
 COPY --from=build /app/packages/backend/dist ./backend/dist
 
-# Install production dependencies for backend
-COPY packages/backend/package*.json ./backend/
-RUN npm install --only=production --prefix ./backend
+# Copy custom Nginx configuration file
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
+# Expose ports for frontend and backend
+EXPOSE 80
 EXPOSE 3000
 
-CMD ["node", "backend/dist/main"]
+# Start both Nginx and the backend
+CMD ["sh", "-c", "nginx -g 'daemon off;' & node backend/dist/main"]
