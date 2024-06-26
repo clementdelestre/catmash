@@ -1,0 +1,28 @@
+# Stage 1: Build the frontend
+FROM node:20-alpine AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy Lerna and root package files
+COPY lerna.json package.json package-lock.json ./
+
+# Copy all packages
+COPY packages ./packages
+
+# Install dependencies for the entire monorepo
+RUN npm install
+
+# Build frontend
+RUN npx lerna run build --scope frontend
+
+# Stage 2: Serve frontend with Nginx
+FROM nginx:alpine
+
+WORKDIR /app
+
+COPY --from=build /app/packages/frontend/dist ./dist
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+
+# Expose ports for frontend
+EXPOSE 80

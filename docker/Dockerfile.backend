@@ -1,0 +1,35 @@
+# Stage 1: Build the backend
+FROM node:20-alpine AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy Lerna and root package files
+COPY lerna.json package.json package-lock.json ./
+
+# Copy all packages
+COPY packages ./packages
+
+# Install dependencies for the entire monorepo
+RUN npm install
+
+# Build backend
+RUN npx lerna run build --scope backend
+
+# Stage 2: run backend with Node
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy backend files
+COPY --from=build /app/packages/backend/dist/ ./dist/
+
+# Install dependencies
+COPY --from=build /app/packages/backend/package.json /app/packages/backend/package-lock.json ./
+RUN npm install
+
+# Expose ports for backend
+EXPOSE 3000
+
+# Start the backend
+CMD ["node", "dist/main"]
