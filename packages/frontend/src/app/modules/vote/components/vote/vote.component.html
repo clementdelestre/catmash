@@ -1,12 +1,15 @@
 <div class="h-full w-full">
-    <div class="flex h-full flex-col sm:flex-row ">
+
+    @if(cats().length > 0){
+    <div class="flex h-full flex-col sm:flex-row">
         <div class="w-full h-full flex items-center justify-center bg-primary-100">
-            <app-vote-card></app-vote-card>
+            <app-vote-card [cat]="cats()[0]" (onVote)="handleVote()"></app-vote-card>
         </div>
         <div class="w-full h-full flex items-center justify-center">
-            <app-vote-card></app-vote-card>
+            <app-vote-card [cat]="cats()[1]" (onVote)="handleVote()"></app-vote-card>
         </div>
     </div>
+    }
 
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <span class="text-7xl italic font-bold">VS</span>

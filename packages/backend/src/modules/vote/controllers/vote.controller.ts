@@ -1,4 +1,4 @@
-import { ClassSerializerInterceptor, Controller, Get, Param, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Req, UseInterceptors } from '@nestjs/common';
 import { VoteService } from '../services/vote.service';
 
 @Controller('vote')
@@ -12,8 +12,8 @@ export class VoteController {
         return this.voteService.getCandidates();
     }
 
-    @Post(':cat')
-    async vote(@Req() req: any, @Param('cat') catId: number){
+    @Post()
+    async vote(@Req() req: any, @Body('catId') catId: number){
         return this.voteService.vote(catId);
     }
 

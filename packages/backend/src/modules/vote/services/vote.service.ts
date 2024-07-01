@@ -17,7 +17,8 @@ export class VoteService {
         
         const cats = await this.catRepo.createQueryBuilder('cat')
             .leftJoin('cat.votes', 'vote')
-            .orderBy('vote', 'ASC')
+            .orderBy('vote', 'DESC')
+            .addOrderBy('RANDOM()')
             .limit(2)
             .getMany()
         
