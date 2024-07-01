@@ -11,7 +11,7 @@ export class CatEntity {
     name: string;
 
     @Column()
-    imgUrl: string;
+    picture: string;
 
     @OneToMany(() => VoteEntity, vote => vote.cat, {cascade: true})
     votes: Relation<VoteEntity[]>;

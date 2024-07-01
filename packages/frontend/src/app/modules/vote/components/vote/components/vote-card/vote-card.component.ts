@@ -2,6 +2,8 @@ import { Component, input, output } from '@angular/core';
 import { Cat } from '../../../../../../core/models/cat.model';
 import { ApiService } from '../../../../../../core/http/api.service';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../../../../../environments/environment';
+import { getCatPictureUrl } from '../../../../../../shared/tools/url.tool';
 
 @Component({
   selector: 'app-vote-card',
@@ -11,6 +13,8 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './vote-card.component.scss',
 })
 export class VoteCardComponent {
+
+  public getCatPictureUrl = getCatPictureUrl
 
   cat = input.required<Cat>();
   onVote = output<void>();
@@ -22,4 +26,5 @@ export class VoteCardComponent {
       this.onVote.emit();
     });
   }
+
 }
