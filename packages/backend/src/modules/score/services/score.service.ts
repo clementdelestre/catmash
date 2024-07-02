@@ -6,13 +6,14 @@ import { Repository } from 'typeorm';
 import { RankedCatDto } from '../dto/ranked-cat.dto';
 import { PageOptionsDto } from 'src/shared/dto/page-options.dto';
 import { PageMetaDto } from 'src/shared/dto/page-meta.dto';
+import { FiltersDto } from '../dto/filters.dto';
 
 @Injectable()
 export class ScoreService {
     constructor(@InjectRepository(CatEntity) private readonly catRepo: Repository<CatEntity>,
         @InjectRepository(VoteEntity) private readonly voteRepo: Repository<VoteEntity>,) {}
 
-    async getScore(pageOptionsDto: PageOptionsDto){
+    async getScore(pageOptionsDto: PageOptionsDto, filters: FiltersDto){
 
         const subQuery = this.voteRepo.createQueryBuilder('vote')
             .select('vote.catId', 'cat_id')
@@ -20,6 +21,14 @@ export class ScoreService {
             .orderBy('COUNT(vote.catId)', pageOptionsDto.order)
             .skip(pageOptionsDto.skip)
             .take(pageOptionsDto.take)
+
+            .where('1=1')
+            if(filters.startAt){
+                subQuery.andWhere(`vote.date >= '${filters.startAt}'`)
+            }
+            if(filters.endAt){
+                subQuery.andWhere(`vote.date <= '${filters.endAt}'`)
+            }
 
         const itemCount = await subQuery.getCount();
 
