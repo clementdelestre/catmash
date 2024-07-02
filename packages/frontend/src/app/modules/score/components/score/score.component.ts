@@ -78,15 +78,15 @@ export class ScoreComponent {
   }
 
   checkLoadRequired() {
-    let pos =
-      (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
+    // let pos =
+    //   (document.documentElement.scrollTop || document.body.scrollTop) +
+    //   document.documentElement.offsetHeight;
+    // let max = document.documentElement.scrollHeight;
 
-    if (pos >= (4 / 5) * max && this.isLoading() == false && this.pageMeta?.hasNextPage) {
-      this.pagination.page += 1;
-      this.getScore(true);
-    }
+    // if (pos >= (4 / 5) * max && this.isLoading() == false && this.pageMeta?.hasNextPage) {
+    //   this.pagination.page += 1;
+    //   this.getScore(true);
+    // }
   }
 
   toggleShowFilters() {
