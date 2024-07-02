@@ -1,98 +1,122 @@
 <div class="w-full lg:w-2/3 m-auto">
-  <div class="flex items-center p-8">
-    <div class="flex-grow flex items-center space-x-4 text-3xl">
-        <button class="text-primary-700" routerLink="/"><i class="las la-home"></i></button>
-        <h1 class="font-bold">
-            Classement
-        </h1>
-    </div>
-  </div>
-
-  <div class="px-8 mt-4">
-    <h2 class="text-primary-700 font-bold text-3xl flex items-center">
-      <img src="/img/podium.svg" class="w-10 mt-1 mr-4" />
-      Podium
-    </h2>
-  </div>
-
-  @if (rankedCats().length >= 3) {
-    <div class="mt-4">
-      <div class="flex justify-center px-2">
-        <app-podium-card
-          [rankedCat]="rankedCats()[1]"
-          [rank]="PodiumRank.SECOND"
-        >
-        </app-podium-card>
-        <app-podium-card
-          [rankedCat]="rankedCats()[0]"
-          [rank]="PodiumRank.FIRST"
-        >
-        </app-podium-card>
-        <app-podium-card
-          [rankedCat]="rankedCats()[2]"
-          [rank]="PodiumRank.THIRD"
-        >
-        </app-podium-card>
-      </div>
+    <div class="p-4">
+        <div class="p-4 rounded-xl border bg-white">
+            <div class="flex items-center">
+                <div class="flex-grow flex items-center space-x-4 text-3xl">
+                    <button class="text-primary-700" routerLink="/">
+                        <i class="las la-home"></i>
+                    </button>
+                    <h1 class="font-bold">Classement</h1>
+                </div>
+                <div class="space-x-4 text-lg">
+                    <button (click)="toggleShowFilters()"
+                        class=" rounded-xl px-4 py-2 whitespace-nowrap border hover:bg-primary-600 hover:text-white duration-200 shadow-sm font-semibold2"
+                        [ngClass]="{
+                            'bg-primary-700 text-white': showFilters(),
+                            'bg-white ': !showFilters()
+                            }">
+                        <i class="las la-filter mr-2"></i>Filtrer
+                    </button>
+                </div>
+            </div>
+            <div class="pt-2 border-t mt-4" *ngIf="showFilters()" @heightAnimation>
+                <h5 class="font-bold text-lg">Filtres</h5>
+                <div class="flex space-x-4 mt-2">
+                    <div class="flex flex-col w-full sm:w-48">
+                        <label for="startAt" class="font-semibold">Date de début</label>
+                        <input type="date" id="startAt" class="border border-neutral-200 rounded-lg p-2 w-full mt-2" [formControl]="startAt" />
+                    </div>
+                    <div class="flex flex-col w-full sm:w-48">
+                        <label for="endAt" class="font-semibold">Date de fin</label>
+                        <input type="date" id="endAt" class="border border-neutral-200 rounded-lg p-2 w-full mt-2" [formControl]="endAt" />
+                    </div>
+                   
+                </div>
+                <div class="flex justify-end mt-2">
+                    <button (click)="applyFilters()" class="bg-primary-700 text-white rounded-lg px-4 py-2 whitespace-nowrap hover:bg-primary-600 duration-200">Appliquer</button>
+                </div>
+            </div>
+        </div>
+       
     </div>
 
     <div class="px-8 mt-4">
-      <h2 class="text-primary-700 font-bold text-3xl flex items-center">
-        <img src="/img/cat.svg" class="w-10 mt-1 mr-4" />
-        Classement général
-      </h2>
+        <h2 class="text-primary-700 font-bold text-3xl flex items-center">
+            <img src="/img/podium.svg" class="w-10 mt-1 mr-4" />
+            Podium
+        </h2>
+    </div>
+
+    
+    <div class="mt-4">
+        <div class="flex justify-center px-2">
+            @if (rankedCats().length >= 2) {
+                <app-podium-card [rankedCat]="rankedCats()[1]" [rank]="PodiumRank.SECOND">
+                </app-podium-card>
+            }
+            @if (rankedCats().length >= 1) {
+                <app-podium-card [rankedCat]="rankedCats()[0]" [rank]="PodiumRank.FIRST">
+                </app-podium-card>
+            }
+            @if (rankedCats().length >= 3) {
+                <app-podium-card [rankedCat]="rankedCats()[2]" [rank]="PodiumRank.THIRD">
+                </app-podium-card>
+            }
+        </div>
+    </div>
+
+    @if (rankedCats().length >= 3) {
+
+    <div class="px-8 mt-4">
+        <h2 class="text-primary-700 font-bold text-3xl flex items-center">
+            <img src="/img/cat.svg" class="w-10 mt-1 mr-4" />
+            Classement général
+        </h2>
     </div>
 
     <div class="w-full mt-6 px-2">
-      <div class="flex flex-col">
-        <div class="overflow-x-auto">
-          <div class="inline-block min-w-full py-2">
-            <div class="overflow-hidden">
-              <table
-                class="min-w-full text-left text-sm font-light dark:text-white"
-              >
-                <thead
-                  class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800"
-                >
-                  <tr>
-                    <th scope="col" class="px-6 py-4">Classement</th>
-                    <th scope="col" class="px-6 py-4">Chat</th>
-                    <th scope="col" class="px-6 py-4">Nombre de votes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (rankedCat of rankedCats().slice(3); track $index) {
-                    <tr
-                      class="border-b border-neutral-200 dark:border-white/10"
-                    >
-                      <td class="whitespace-nowrap px-6 py-0 font-medium">
-                        <div class="font-bold text-primary-700">
-                          {{ $index + 4 }}e
-                        </div>
-                      </td>
-                      <td class="whitespace-nowrap px-6 py-0">
-                        <div class="flex items-center space-x-4">
-                          <div
-                            class="rounded-full overflow-hidden border-8 border-primary-50 w-14"
-                          >
-                            <img [src]="getCatPictureUrl(rankedCat.cat.id)" />
-                          </div>
-                          <h2 class="font-semibold text-base">
-                            {{ rankedCat.cat.name }}
-                          </h2>
-                        </div>
-                      </td>
-                      <td class="whitespace-nowrap px-6 py-0">
-                        {{ rankedCat.votesCount }}
-                      </td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
+        <div class="flex flex-col">
+            <div class="overflow-x-auto">
+                <div class="inline-block min-w-full py-2">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full text-left text-sm font-light dark:text-white">
+                            <thead
+                                class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Classement</th>
+                                    <th scope="col" class="px-6 py-4">Chat</th>
+                                    <th scope="col" class="px-6 py-4">Nombre de votes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (rankedCat of rankedCats().slice(3); track $index) {
+                                <tr class="border-b border-neutral-200 dark:border-white/10">
+                                    <td class="whitespace-nowrap px-6 py-0 font-medium">
+                                        <div class="font-bold text-primary-700">
+                                            {{ $index + 4 }}e
+                                        </div>
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-0">
+                                        <div class="flex items-center space-x-4">
+                                            <div class="rounded-full overflow-hidden border-8 border-primary-50 w-14">
+                                                <img [src]="getCatPictureUrl(rankedCat.cat.id)" />
+                                            </div>
+                                            <h2 class="font-semibold text-base">
+                                                {{ rankedCat.cat.name }}
+                                            </h2>
+                                        </div>
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-0">
+                                        {{ rankedCat.votesCount }}
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  }
+    }
 </div>
