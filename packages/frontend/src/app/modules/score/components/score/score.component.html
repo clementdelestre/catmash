@@ -76,13 +76,13 @@
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full py-2">
                     <div class="overflow-hidden">
-                        <table class="min-w-full text-left text-sm font-light dark:text-white">
+                        <table class="min-w-full text-left font-light dark:text-white">
                             <thead
                                 class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">Classement</th>
                                     <th scope="col" class="px-6 py-4">Chat</th>
-                                    <th scope="col" class="px-6 py-4">Nombre de votes</th>
+                                    <th scope="col" class="px-6 py-4 hidden sm:table-cell">Nombre de votes</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,12 +98,15 @@
                                             <div class="rounded-full overflow-hidden border-8 border-primary-50 w-14">
                                                 <img [src]="getCatPictureUrl(rankedCat.cat.id)" />
                                             </div>
-                                            <h2 class="font-semibold text-base">
-                                                {{ rankedCat.cat.name }}
-                                            </h2>
+                                            <div class="font-semibold text-lg sm:text-base">
+                                                    {{ rankedCat.cat.name }}
+                                                    <span class="text-primary-700 font-bold text-sm block -mt-1 sm:hidden">{{ rankedCat.votesCount }} votes</span>
+                                            </div>
+
+                                            
                                         </div>
                                     </td>
-                                    <td class="whitespace-nowrap px-6 py-0">
+                                    <td class="whitespace-nowrap px-6 py-0 hidden sm:table-cell">
                                         {{ rankedCat.votesCount }}
                                     </td>
                                 </tr>
