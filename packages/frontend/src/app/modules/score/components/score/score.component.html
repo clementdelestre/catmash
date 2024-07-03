@@ -19,7 +19,7 @@
                     </button>
                 </div>
             </div>
-            <div class="pt-2 border-t mt-4" *ngIf="showFilters()" @heightAnimation>
+            <div class="pt-2 border-t mt-4 overflow-hidden" *ngIf="showFilters()" @heightAnimation>
                 <h5 class="font-bold text-lg">Filtres</h5>
                 <div class="flex space-x-4 mt-2">
                     <div class="flex flex-col w-full sm:w-48">
@@ -30,14 +30,12 @@
                         <label for="endAt" class="font-semibold">Date de fin</label>
                         <input type="date" id="endAt" class="border border-neutral-200 rounded-lg p-2 w-full mt-2" [formControl]="endAt" />
                     </div>
-                   
                 </div>
                 <div class="flex justify-end mt-2">
                     <button (click)="applyFilters()" class="bg-primary-700 text-white rounded-lg px-4 py-2 whitespace-nowrap hover:bg-primary-600 duration-200">Appliquer</button>
                 </div>
             </div>
         </div>
-       
     </div>
 
     <div class="px-8 mt-4">
@@ -47,8 +45,7 @@
         </h2>
     </div>
 
-    
-    <div class="mt-4">
+    <div class="mt-4 mx-1">
         <div class="flex flex-col sm:flex-row justify-center px-2">
             @if (rankedCats().length >= 2) {
                 <app-podium-card [rankedCat]="rankedCats()[1]" [rank]="PodiumRank.SECOND">
