@@ -16,9 +16,7 @@ export class VoteService {
     async getCandidates() {
         
         const cats = await this.catRepo.createQueryBuilder('cat')
-            .leftJoin('cat.votes', 'vote')
-            .orderBy('vote', 'DESC')
-            .addOrderBy('RANDOM()')
+            .orderBy('RANDOM()')
             .limit(2)
             .getMany()
         
