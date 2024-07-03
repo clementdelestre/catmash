@@ -15,31 +15,29 @@ export class ScoreService {
 
     async getScore(pageOptionsDto: PageOptionsDto, filters: FiltersDto){
 
-        const subQuery = this.voteRepo.createQueryBuilder('vote')
-            .select('vote.catId', 'cat_id')
+        const queryBuilder = this.voteRepo.createQueryBuilder('vote')
+            .select('cat.id', 'cat_id')
+            .addSelect('cat.name', 'cat_name')
+            .addSelect('cat.picture', 'cat_picture')
+            .addSelect('COUNT(vote.catId)', 'vote_count')
+            .leftJoin('vote.cat', 'cat')
             .groupBy('vote.catId')
+            .addGroupBy('cat.id')
             .orderBy('COUNT(vote.catId)', pageOptionsDto.order)
-            .skip(pageOptionsDto.skip)
-            .take(pageOptionsDto.take)
+            .addOrderBy('cat.id', 'DESC')
+            .offset(pageOptionsDto.skip)
+            .limit(pageOptionsDto.take)
 
             .where('1=1')
             if(filters.startAt){
-                subQuery.andWhere(`vote.date >= '${filters.startAt}'`)
+                queryBuilder.andWhere(`vote.date >= '${filters.startAt}'`)
             }
             if(filters.endAt){
-                subQuery.andWhere(`vote.date <= '${filters.endAt}'`)
+                queryBuilder.andWhere(`vote.date <= '${filters.endAt}'`)
             }
 
-        const itemCount = await subQuery.getCount();
-
-        const queryBuilder = this.catRepo.createQueryBuilder('cat')
-            .leftJoin('cat.votes', 'vote')
-            .addSelect('COUNT(vote.id)', 'vote_count')
-            .groupBy('cat.id')
-            .orderBy('vote_count', pageOptionsDto.order)
-            .where(`cat.id IN (${subQuery.getQuery()})`)
-
         const raws = await queryBuilder.getRawMany();
+        const itemCount = await queryBuilder.getCount();
 
         const rankedCatsDto: RankedCatDto[] = raws.map((cat) => {
             return {
