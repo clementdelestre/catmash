@@ -76,9 +76,9 @@
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full py-2">
                     <div class="overflow-hidden">
-                        <table class="min-w-full text-left font-light dark:text-white">
+                        <table class="min-w-full text-left font-light">
                             <thead
-                                class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
+                                class="border-b border-neutral-200 bg-neutral-50 font-medium ">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">Classement</th>
                                     <th scope="col" class="px-6 py-4">Chat</th>
@@ -87,7 +87,7 @@
                             </thead>
                             <tbody>
                                 @for (rankedCat of rankedCats().slice(3); track $index) {
-                                <tr class="border-b border-neutral-200 dark:border-white/10">
+                                <tr class="border-b border-neutral-200 ">
                                     <td class="whitespace-nowrap px-6 py-0 font-medium">
                                         <div class="font-bold text-primary-700">
                                             {{ $index + 4 }}e
@@ -102,8 +102,6 @@
                                                     {{ rankedCat.cat.name }}
                                                     <span class="text-gray-700 font-semibold text-sm block -mt-1 sm:hidden">{{ rankedCat.votesCount }} votes</span>
                                             </div>
-
-                                            
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-0 hidden sm:table-cell">
