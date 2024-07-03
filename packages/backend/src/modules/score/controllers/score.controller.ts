@@ -16,4 +16,10 @@ export class ScoreController {
         return new PageDto(score.rankedCatsDto, score.pageMetaDto);
     }
 
+    @Get('novote')
+    async getNoVote(@Query(new PaginationTransformPipe()) pagination: PageOptionsDto) {
+        const score = await this.scoreService.getNoVote(pagination);
+        return new PageDto(score.rankedCatsDto, score.pageMetaDto);
+    }
+
 }

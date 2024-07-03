@@ -43,5 +43,4 @@ jobs:
       env:
         DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}-${{ matrix.package }}
       run: |
-        echo github.ref
         curl -X GET $DEPLOY_WEBHOOK_URL -H 'Content-type: application/json' --data '{"text":"Deployment completed successfully."}'

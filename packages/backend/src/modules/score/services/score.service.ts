@@ -54,4 +54,31 @@ export class ScoreService {
 
         return { rankedCatsDto, pageMetaDto };
     }
+
+    async getNoVote(pageOptionsDto: PageOptionsDto){
+
+        const queryBuilder = this.catRepo.createQueryBuilder('cat')
+            .select(['cat.id', 'cat.name', 'cat.picture'])
+            .leftJoin('cat.votes', 'votes')
+            .loadRelationCountAndMap('cat.count', 'cat.votes')
+            .where('votes.id IS NULL')
+            .offset(pageOptionsDto.skip)
+            .limit(pageOptionsDto.take)
+
+        const [cats, count] = await queryBuilder.getManyAndCount();
+
+        console.log(cats);
+
+        const rankedCatsDto: RankedCatDto[] = cats.map((cat) => {
+            return {
+                cat : cat,
+                votesCount: count,
+            }
+        })
+
+        const itemCount = await queryBuilder.getCount();
+        const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+        return { rankedCatsDto, pageMetaDto };
+    }
 }

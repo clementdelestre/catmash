@@ -1,0 +1,26 @@
+<div class="py-8 px-4 text-center">
+    <div><span class="font-bold">Vous ne trouvez pas votre chat ?</span><button (click)="showNoVoteModal()" class="ml-2 hover:text-primary-700 duration-200">Afficher les chats n'ayant aucun vote.</button></div>
+</div>
+
+
+<ng-template #noVoteModalBody>
+
+    @for (rankedCat of rankedCats(); track $index) {
+
+        <div class="flex items-center py-2">
+            <img [src]="getCatPictureUrl(rankedCat.cat.id)" class="w-12 h-12 rounded-full mr-4" />
+            <span class="font-semibold">{{ rankedCat.cat.name }}</span>
+        </div>
+
+    }
+
+    @if(pageMeta?.hasNextPage){
+        <div class="text-center">
+            <button (click)="loadMore()" class="bg-primary-700 text-white rounded-lg px-4 py-2 whitespace-nowrap hover:bg-primary-600 duration-200 mt-8">
+                <i class="las la-plus mr-2"></i>
+                Voir plus
+            </button>
+        </div>
+    }
+    
+</ng-template>

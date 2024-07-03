@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, model, signal } from '@angular/core';
+import { Component, ComponentRef, HostListener, Inject, TemplateRef, ViewChild, model, signal } from '@angular/core';
 import { PodiumCardComponent } from './components/podium-card/podium-card.component';
 import { PodiumRank } from '../../models/podium-rank.enum';
 import { ApiService } from '../../../../core/http/api.service';
@@ -13,11 +13,12 @@ import { RouterLink } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { heightAnimation } from '../../../../shared/constants/animations.constants';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NovoteModalComponent } from './components/novote/novote.component';
 
 @Component({
   selector: 'app-score',
   standalone: true,
-  imports: [PodiumCardComponent, RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [PodiumCardComponent, NovoteModalComponent, RouterLink, CommonModule, ReactiveFormsModule],
   templateUrl: './score.component.html',
   styleUrl: './score.component.scss',
   animations: [
@@ -25,6 +26,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   ]
 })
 export class ScoreComponent {
+
   public PodiumRank = PodiumRank;
   public getCatPictureUrl = getCatPictureUrl;
 
@@ -45,9 +47,8 @@ export class ScoreComponent {
   startAt = new FormControl(null);
   endAt = new FormControl(null);
 
-  constructor(private readonly apiService: ApiService, @Inject(DOCUMENT) private document: Document) {
-    
-  }
+
+  constructor(private readonly apiService: ApiService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
     this.getScore();
@@ -98,4 +99,5 @@ export class ScoreComponent {
     this.pagination.page = 1;
     this.getScore();
   }
+
 }
