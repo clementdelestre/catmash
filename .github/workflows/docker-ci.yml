@@ -20,7 +20,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env: 
-      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/catest-${{ matrix.package }}:latest
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/catmash-${{ matrix.package }}:latest
 
     steps:
     - name: Checkout code
