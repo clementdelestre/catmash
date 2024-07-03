@@ -33,7 +33,7 @@ jobs:
         docker push $IMAGE_NAME
 
     - name: Deploy notification
-      if: github.ref == 'refs/heads/main'
+      if: github.event.pull_request.base.ref == 'main'
       env:
         DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}-${{ matrix.package }}
       run: |
