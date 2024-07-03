@@ -2,7 +2,6 @@ import { Component, input, output } from '@angular/core';
 import { Cat } from '../../../../../../core/models/cat.model';
 import { ApiService } from '../../../../../../core/http/api.service';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '../../../../../../../environments/environment';
 import { getCatPictureUrl } from '../../../../../../shared/tools/url.tool';
 
 @Component({
