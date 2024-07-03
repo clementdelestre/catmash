@@ -1,4 +1,4 @@
-import { Component, HostListener, model, signal } from '@angular/core';
+import { Component, HostListener, Inject, model, signal } from '@angular/core';
 import { PodiumCardComponent } from './components/podium-card/podium-card.component';
 import { PodiumRank } from '../../models/podium-rank.enum';
 import { ApiService } from '../../../../core/http/api.service';
@@ -10,7 +10,7 @@ import { PageOptionsDto } from '../../../../shared/dto/page-options.dto';
 import { Order } from '../../../../shared/constants/order.constant';
 import { PageDto } from '../../../../shared/dto/page.dto';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { heightAnimation } from '../../../../shared/constants/animations.constants';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -45,7 +45,7 @@ export class ScoreComponent {
   startAt = new FormControl(null);
   endAt = new FormControl(null);
 
-  constructor(private readonly apiService: ApiService) {
+  constructor(private readonly apiService: ApiService, @Inject(DOCUMENT) private document: Document) {
     
   }
 
@@ -78,15 +78,15 @@ export class ScoreComponent {
   }
 
   checkLoadRequired() {
-    // let pos =
-    //   (document.documentElement.scrollTop || document.body.scrollTop) +
-    //   document.documentElement.offsetHeight;
-    // let max = document.documentElement.scrollHeight;
+    let pos =
+      (this.document.documentElement.scrollTop || this.document.body.scrollTop) +
+      this.document.documentElement.offsetHeight;
+    let max = this.document.documentElement.scrollHeight;
 
-    // if (pos >= (4 / 5) * max && this.isLoading() == false && this.pageMeta?.hasNextPage) {
-    //   this.pagination.page += 1;
-    //   this.getScore(true);
-    // }
+    if (pos >= (4 / 5) * max && this.isLoading() == false && this.pageMeta?.hasNextPage) {
+      this.pagination.page += 1;
+      this.getScore(true);
+    }
   }
 
   toggleShowFilters() {
