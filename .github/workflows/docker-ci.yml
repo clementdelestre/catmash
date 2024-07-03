@@ -1,10 +1,11 @@
 name: CI/CD
 
 on:
-  push:
-    branches: [ dev ]
   pull_request:
+    branches: [ main, dev ]
+  pull_request_target:
     branches: [ main ]
+    types: [closed]
 
 permissions:
   contents: read
@@ -18,23 +19,29 @@ jobs:
         package: [frontend, backend]
 
     runs-on: ubuntu-latest
+    env: 
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/catest-${{ matrix.package }}:latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build and push Docker image to GHCR
+    - name: Login to GitHub Container Registry
       env:
         GITHUB_TOKEN: ${{ secrets.CR_PAT }}
-        IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/catmash-${{ matrix.package }}:latest
-      run: |
-        echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-        docker build -t $IMAGE_NAME -f docker/Dockerfile.${{ matrix.package }} .
-        docker push $IMAGE_NAME
+      run: echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t $IMAGE_NAME -f docker/Dockerfile.${{ matrix.package }} .
+
+    - name: Push Docker image
+      if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+      run: docker push $IMAGE_NAME
 
     - name: Deploy notification
-      if: github.event.pull_request.base.ref == 'main'
+      if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
       env:
         DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}-${{ matrix.package }}
       run: |
+        echo github.ref
         curl -X GET $DEPLOY_WEBHOOK_URL -H 'Content-type: application/json' --data '{"text":"Deployment completed successfully."}'
