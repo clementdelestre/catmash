@@ -22,6 +22,9 @@ export class ModalService {
 
     const sub = dialogRef.instance.onClose.subscribe(() => { this.closeModal(dialogRef); sub.unsubscribe() });
 
+    //Disable scrolling on body
+    document.body.style.overflow = 'hidden';
+
     document.body.appendChild(dialogRef.location.nativeElement);
 
     this.appRef.attachView(dialogRef.hostView);
@@ -36,6 +39,11 @@ export class ModalService {
     if (this.dialogs.includes(dialog)) {
       dialog.destroy();
       this.dialogs.splice(this.dialogs.indexOf(dialog), 1);
+    }
+
+    //Enable scrolling on body
+    if(this.dialogs.length === 0){
+      document.body.style.overflow = 'auto';
     }
   }
 }
