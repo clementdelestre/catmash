@@ -1,7 +1,7 @@
 <div
-  class="border border-primary-100 shadow-sm bg-white shadow-primary-100 p-2 rounded-lg"
-  [class.mt-16]="rank() == PodiumRank.SECOND"
-  [class.mt-32]="rank() == PodiumRank.THIRD"
+  class="border border-primary-100 shadow-sm bg-white shadow-primary-100 p-2 rounded-lg flex sm:flex-col"
+  [class.sm:mt-16]="rank() == PodiumRank.SECOND"
+  [class.sm:mt-32]="rank() == PodiumRank.THIRD"
 >
   <div
     class="border shadow-sm p-4 rounded-xl w-full relative bg-gradient-to-t"
@@ -24,18 +24,21 @@
         }
       }
     </div>
-    <div class="mt-8 px-1 sm:px-4">
+    <div class="sm:mt-8 px-1 sm:px-4 w-2/3 sm:w-auto m-auto">
       <div class="rounded-full overflow-hidden border-8 border-primary-50">
         <img [src]="getCatPictureUrl(rankedCat().cat.id)" />
       </div>
     </div>
 
     <p
-      class="font-bold text-center text-white text-xl mt-4 [text-shadow:_0_1px_0_rgb(0_0_0_/_50%)]"
+      class="font-bold text-center text-white text-xl mt-4 [text-shadow:_0_1px_0_rgb(0_0_0_/_50%)] hidden sm:block"
     >
       {{ rankedCat().votesCount }} votes
     </p>
   </div>
 
-  <p class="font-bold px-2 my-2 text-lg">{{ rankedCat().cat.name }}</p>
+  <div class="px-2 my-2 w-full">
+    <p class="font-bold text-xl sm:text-lg">{{ rankedCat().cat.name }}</p>
+    <p class="sm:hidden text-primary-700 font-bold text-2xl mt-4">{{ rankedCat().votesCount }} votes</p>
+  </div>
 </div>
