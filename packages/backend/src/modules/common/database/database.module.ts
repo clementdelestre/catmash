@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
-      logging: ['error', 'query'],
+      logging: ['error'],
       cache: false,
       autoLoadEntities: true,
     }),
