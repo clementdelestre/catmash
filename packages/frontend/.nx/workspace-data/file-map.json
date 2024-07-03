@@ -1,0 +1,413 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.4.0",
+  "deps": {
+    "@angular/animations": "^18.0.5",
+    "@angular/common": "^18.0.0",
+    "@angular/compiler": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@angular/platform-server": "^18.0.0",
+    "@angular/pwa": "^18.0.7",
+    "@angular/router": "^18.0.0",
+    "@angular/service-worker": "^18.0.0",
+    "@angular/ssr": "^18.0.4",
+    "express": "^4.18.2",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.3",
+    "@angular-devkit/build-angular": "^18.0.4",
+    "@angular/cli": "^18.0.4",
+    "@angular/compiler-cli": "^18.0.0",
+    "@types/express": "^4.17.17",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^18.18.0",
+    "autoprefixer": "^10.4.19",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "~5.4.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "17241496168097493888"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10175894702052279752"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "11934160580685414355"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17406702432687230417"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "10093397977228577162"
+      },
+      {
+        "file": "README.md",
+        "hash": "1949344911629409986"
+      },
+      {
+        "file": "angular.json",
+        "hash": "10202254300030951389"
+      },
+      {
+        "file": "docker/nginx.conf",
+        "hash": "7700093565062226224"
+      },
+      {
+        "file": "ngsw-config.json",
+        "hash": "9118285195023689490"
+      },
+      {
+        "file": "package.json",
+        "hash": "16927309142084293350"
+      },
+      {
+        "file": "public/favicon.ico",
+        "hash": "4840813801574372212"
+      },
+      {
+        "file": "public/fonts/line-awesome/LICENSE.txt",
+        "hash": "17656062026160724828"
+      },
+      {
+        "file": "public/fonts/line-awesome/css/line-awesome.min.css",
+        "hash": "16908034792542419063"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-brands-400.eot",
+        "hash": "16366477508062754571"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-brands-400.svg",
+        "hash": "8687517573398583749"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-brands-400.ttf",
+        "hash": "2362787254697004576"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-brands-400.woff",
+        "hash": "1558275984800847860"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-brands-400.woff2",
+        "hash": "1204529350836156842"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-regular-400.eot",
+        "hash": "17332226009381595825"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-regular-400.svg",
+        "hash": "16036787287023628484"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-regular-400.ttf",
+        "hash": "9857687230509718950"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-regular-400.woff",
+        "hash": "15392393685982151966"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-regular-400.woff2",
+        "hash": "16374538160736244974"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-solid-900.eot",
+        "hash": "17747303886546180580"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-solid-900.svg",
+        "hash": "4508331078266462457"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-solid-900.ttf",
+        "hash": "17750376103696480596"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-solid-900.woff",
+        "hash": "9083726030663318673"
+      },
+      {
+        "file": "public/fonts/line-awesome/fonts/la-solid-900.woff2",
+        "hash": "4619977156989127699"
+      },
+      {
+        "file": "public/fonts/line-awesome/line-awesome.fig",
+        "hash": "5696636728390847597"
+      },
+      {
+        "file": "public/icons/icon-144x144.png",
+        "hash": "2295648349945032403"
+      },
+      {
+        "file": "public/icons/icon-192x192.png",
+        "hash": "9003345215102349932"
+      },
+      {
+        "file": "public/icons/icon-512x512.png",
+        "hash": "14289988640829450355"
+      },
+      {
+        "file": "public/icons/icon-72x72.png",
+        "hash": "11966018923072335037"
+      },
+      {
+        "file": "public/icons/icon-96x96.png",
+        "hash": "5443150692883328781"
+      },
+      {
+        "file": "public/img/cat-blank.svg",
+        "hash": "17647779298487242494"
+      },
+      {
+        "file": "public/img/cat-logo.svg",
+        "hash": "4866691944299008516"
+      },
+      {
+        "file": "public/img/cat.svg",
+        "hash": "8444999725260461202"
+      },
+      {
+        "file": "public/img/first.svg",
+        "hash": "5122253938282752270"
+      },
+      {
+        "file": "public/img/podium.svg",
+        "hash": "9438149369259499788"
+      },
+      {
+        "file": "public/img/second.svg",
+        "hash": "10025955482448231885"
+      },
+      {
+        "file": "public/img/third.svg",
+        "hash": "9733373311777787033"
+      },
+      {
+        "file": "public/manifest.webmanifest",
+        "hash": "13523533792279218319"
+      },
+      {
+        "file": "server.ts",
+        "hash": "11690129240233445337"
+      },
+      {
+        "file": "src/app/app.component.html",
+        "hash": "16498897523005705592"
+      },
+      {
+        "file": "src/app/app.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/app.component.spec.ts",
+        "hash": "5354266676380973380"
+      },
+      {
+        "file": "src/app/app.component.ts",
+        "hash": "8882888970846067027"
+      },
+      {
+        "file": "src/app/app.config.server.ts",
+        "hash": "15184490126418035619"
+      },
+      {
+        "file": "src/app/app.config.ts",
+        "hash": "3996534518698812527"
+      },
+      {
+        "file": "src/app/app.routes.ts",
+        "hash": "7529037884713689004"
+      },
+      {
+        "file": "src/app/core/core.module.ts",
+        "hash": "10319375597653814781"
+      },
+      {
+        "file": "src/app/core/http/api-base-action.interface.ts",
+        "hash": "567995200074883751"
+      },
+      {
+        "file": "src/app/core/http/api.service.ts",
+        "hash": "351522461721414405"
+      },
+      {
+        "file": "src/app/core/http/apiHandler.service.ts",
+        "hash": "5220002565817085190"
+      },
+      {
+        "file": "src/app/core/models/cat.model.ts",
+        "hash": "6954609816847340061"
+      },
+      {
+        "file": "src/app/core/services/update-sw.service.ts",
+        "hash": "15127691566770126429"
+      },
+      {
+        "file": "src/app/modules/score/components/score/components/podium-card/podium-card.component.html",
+        "hash": "16412409032263019628"
+      },
+      {
+        "file": "src/app/modules/score/components/score/components/podium-card/podium-card.component.scss",
+        "hash": "2237634715696243523"
+      },
+      {
+        "file": "src/app/modules/score/components/score/components/podium-card/podium-card.component.ts",
+        "hash": "4356059082682830330"
+      },
+      {
+        "file": "src/app/modules/score/components/score/score.component.html",
+        "hash": "14882905887649371973"
+      },
+      {
+        "file": "src/app/modules/score/components/score/score.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/modules/score/components/score/score.component.ts",
+        "hash": "16464581760919550896"
+      },
+      {
+        "file": "src/app/modules/score/models/podium-rank.enum.ts",
+        "hash": "14045561615223845490"
+      },
+      {
+        "file": "src/app/modules/score/models/ranked-cat.model.ts",
+        "hash": "330887871291238679"
+      },
+      {
+        "file": "src/app/modules/score/score-routing.module.ts",
+        "hash": "3953735321190148126"
+      },
+      {
+        "file": "src/app/modules/score/score.module.ts",
+        "hash": "13216870570268190120"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/components/vote-card/vote-card.component.html",
+        "hash": "12895588127357112349"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/components/vote-card/vote-card.component.scss",
+        "hash": "17612646683541408670"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/components/vote-card/vote-card.component.ts",
+        "hash": "13984984967254221422"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/vote.component.html",
+        "hash": "3039741242791216215"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/vote.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/modules/vote/components/vote/vote.component.ts",
+        "hash": "5831149326905807878"
+      },
+      {
+        "file": "src/app/modules/vote/vote-routing.module.ts",
+        "hash": "8550711686375677140"
+      },
+      {
+        "file": "src/app/modules/vote/vote.module.ts",
+        "hash": "13459959097217861821"
+      },
+      {
+        "file": "src/app/shared/constants/animations.constants.ts",
+        "hash": "4496405230869931515"
+      },
+      {
+        "file": "src/app/shared/constants/order.constant.ts",
+        "hash": "5168836129355166868"
+      },
+      {
+        "file": "src/app/shared/dto/page-meta.dto.ts",
+        "hash": "874108231634833644"
+      },
+      {
+        "file": "src/app/shared/dto/page-options.dto.ts",
+        "hash": "2117028987838511852"
+      },
+      {
+        "file": "src/app/shared/dto/page.dto.ts",
+        "hash": "10798796624944221549"
+      },
+      {
+        "file": "src/app/shared/models/page-options-parameter.models.ts",
+        "hash": "9576374343069577578"
+      },
+      {
+        "file": "src/app/shared/tools/url.tool.ts",
+        "hash": "31666303182870433"
+      },
+      {
+        "file": "src/environments/environment.development.ts",
+        "hash": "15974975517234089950"
+      },
+      {
+        "file": "src/environments/environment.prod.ts",
+        "hash": "230642048449195312"
+      },
+      {
+        "file": "src/environments/environment.ts",
+        "hash": "15974975517234089950"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "10125683051325682935"
+      },
+      {
+        "file": "src/main.server.ts",
+        "hash": "9257623809215978365"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "4169901790405087765"
+      },
+      {
+        "file": "src/styles.scss",
+        "hash": "12146659301600472606"
+      },
+      {
+        "file": "tailwind.config.js",
+        "hash": "6154651512234374204"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "4083687997893277661"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "537034293907716874"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "11023685540591620072"
+      }
+    ]
+  }
+}

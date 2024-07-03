@@ -39,7 +39,7 @@
     </div>
 
     <div class="px-8 mt-4">
-        <h2 class="text-primary-700 font-bold text-3xl flex items-center">
+        <h2 class="text-primary-700 font-bold text-2xl sm:text-3xl flex items-center">
             <img src="/img/podium.svg" class="w-10 mt-1 mr-4" />
             Podium
         </h2>
@@ -65,7 +65,7 @@
     @if (rankedCats().length >= 3) {
 
     <div class="px-8 mt-4">
-        <h2 class="text-primary-700 font-bold text-3xl flex items-center">
+        <h2 class="text-primary-700 font-bold text-2xl sm:text-3xl flex items-center">
             <img src="/img/cat.svg" class="w-10 mt-1 mr-4" />
             Classement général
         </h2>
@@ -100,7 +100,7 @@
                                             </div>
                                             <div class="font-semibold text-lg sm:text-base">
                                                     {{ rankedCat.cat.name }}
-                                                    <span class="text-primary-700 font-bold text-sm block -mt-1 sm:hidden">{{ rankedCat.votesCount }} votes</span>
+                                                    <span class="text-gray-700 font-semibold text-sm block -mt-1 sm:hidden">{{ rankedCat.votesCount }} votes</span>
                                             </div>
 
                                             
