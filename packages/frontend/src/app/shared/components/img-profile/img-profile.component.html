@@ -1,0 +1,3 @@
+<div class="bg-gray-100 rounded-full flex items-center justify-center overflow-hidden" [class.animate-pulse]="pulse">
+    <img [src]="src()" class="{{imgclass()}} aspect-square duration-200" (loadstart)="setPulse(true)" (load)="setPulse(false)" [class.opacity-0]="pulse">
+</div>

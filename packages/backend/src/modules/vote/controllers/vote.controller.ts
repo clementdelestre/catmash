@@ -1,4 +1,4 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Param, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Post, Req, UseInterceptors } from '@nestjs/common';
 import { VoteService } from '../services/vote.service';
 
 @Controller('vote')

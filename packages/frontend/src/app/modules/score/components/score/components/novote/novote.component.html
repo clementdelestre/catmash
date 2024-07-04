@@ -7,9 +7,9 @@
 
     @for (rankedCat of rankedCats(); track $index) {
 
-        <div class="flex items-center py-2">
-            <img [src]="getCatPictureUrl(rankedCat.cat.id)" class="w-12 h-12 rounded-full mr-4" />
-            <span class="font-semibold">{{ rankedCat.cat.name }}</span>
+        <div class="flex items-center py-2 overflow-hidden">
+            <app-img-profile [src]="getCatPictureUrl(rankedCat.cat.id)" imgclass="h-12 w-12" />
+            <span class="font-semibold ml-4">{{ rankedCat.cat.name }}</span>
         </div>
 
     }
