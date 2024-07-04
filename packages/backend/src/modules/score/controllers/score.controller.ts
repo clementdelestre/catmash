@@ -1,4 +1,4 @@
-import { Controller, Get, Header, NotFoundException, Param, Query, StreamableFile } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ScoreService } from '../services/score.service';
 import { PaginationTransformPipe } from 'src/shared/pipes/pagination.pipe';
 import { PageOptionsDto } from 'src/shared/dto/page-options.dto';
