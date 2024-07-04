@@ -8,11 +8,12 @@ import { RankedCat } from '../../../../models/ranked-cat.model';
 import { PageDto } from '../../../../../../shared/dto/page.dto';
 import { firstValueFrom } from 'rxjs';
 import { getCatPictureUrl } from '../../../../../../shared/tools/url.tool';
+import { ImgProfileComponent } from '../../../../../../shared/components/img-profile/img-profile.component';
 
 @Component({
   selector: 'app-novote',
   standalone: true,
-  imports: [],
+  imports: [ImgProfileComponent],
   templateUrl: './novote.component.html',
   styleUrl: './novote.component.scss'
 })

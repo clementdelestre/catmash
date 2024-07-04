@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { VoteCardComponent } from './components/vote-card/vote-card.component';
 import { ApiService } from '../../../../core/http/api.service';
 import { firstValueFrom } from 'rxjs';

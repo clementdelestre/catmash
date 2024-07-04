@@ -94,9 +94,9 @@
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-0">
-                                        <div class="flex items-center space-x-4">
-                                            <div class="rounded-full overflow-hidden border-8 border-primary-50 w-14">
-                                                <img [src]="getCatPictureUrl(rankedCat.cat.id)" />
+                                        <div class="flex items-center space-x-4 py-2">
+                                            <div class="h-12">
+                                                <app-img-profile [src]="getCatPictureUrl(rankedCat.cat.id)" imgclass="h-12" />
                                             </div>
                                             <div class="font-semibold text-lg sm:text-base">
                                                     {{ rankedCat.cat.name }}
